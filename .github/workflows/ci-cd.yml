@@ -14,6 +14,10 @@ jobs:
       - name: Checkout MERN Project
         uses: actions/checkout@v3
 
+      - name: changing the link of public ip
+        run: |
+          find Frontend -type f -exec sed -i "s|http://[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+:5555|http://${{ secrets.VPS_HOST }}:5555|g" {} +
+
       - name: Checkout DevOps Repo (to get Dockerfiles)
         uses: actions/checkout@v3
         with:
